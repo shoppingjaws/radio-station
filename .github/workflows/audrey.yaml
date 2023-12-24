@@ -23,6 +23,10 @@ jobs:
           echo ${{ env.AREA}}
           echo ${{ steps.prev-date.outputs.target_date }}
           echo ${{ env.TIME }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+            platforms: linux/arm64
       - name: Docker build
         run: |
           docker build . -t radio-station
