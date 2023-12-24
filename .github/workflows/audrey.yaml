@@ -22,7 +22,9 @@ jobs:
           echo ${{ env.AREA}}
           echo ${{ steps.prev-date.outputs.target_date }}
           echo ${{ env.TIME }}
-      - name: radigo
+      - name: Docker build
         run: |
           docker build . -t radio-station
+      - name: Docker run
+        run: |
           docker run -v $PWD/output:/output -e RADIKO_MAIL=${{ secrets.RADIKO_MAIL }} -e RADIKO_PASSWORD=${{ secrets.RADIKO_PASSWORD }} radio-station rec -id=${{ env.AREA }} -s=${{ steps.prev-date.outputs.target_date }}${{ env.TIME }}
