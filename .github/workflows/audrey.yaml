@@ -15,7 +15,7 @@ jobs:
       - name: Detect previous program date
         id: prev-date
         run: |
-          target_date=$(node src/get_data.js)
+          target_date=$(node src/get_date.js)
           echo "target_date=$target_date" >>$GITHUB_OUTPUT
       - name: check
         run:
