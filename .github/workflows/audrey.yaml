@@ -30,6 +30,8 @@ jobs:
       - name: Docker build
         run: |
           docker build . -t radio-station
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: Docker run
         run: |
           docker run -v $PWD/output:/output -e RADIKO_MAIL="${{ secrets.RADIKO_MAIL }}" -e RADIKO_PASSWORD="${{ secrets.RADIKO_PASSWORD }}" radio-station rec -a=${{ env.AREA }} -id=${{ env.STATION }} -s=${{ steps.prev-date.outputs.target_date }}${{ env.TIME }}
