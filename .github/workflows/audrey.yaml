@@ -1,0 +1,28 @@
+name: audrey
+on:
+  workflow_dispatch:
+env:
+  AREA: LFR
+  DAYWEEK: 0 # 0 (Sunday) to 6 (Saturday)
+  TIME: 010000
+  TITLE: オードリーのオールナイトニッポン
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Detect previous program date
+        id: prev-date
+        run: |
+          target_date=$(node src/get_data.js)
+          echo "target_date=$target_date" >>$GITHUB_OUTPUT
+      - name: check
+        run:
+          echo ${{ env.AREA}}
+          echo ${{ steps.prev-date.outputs.target_date }}
+          echo ${{ env.TIME }}
+      - name: radigo
+        run: |
+          docker build . -t radio-station
+          docker run -v $PWD/output:/output -e RADIKO_MAIL=${{ secrets.RADIKO_MAIL }} -e RADIKO_PASSWORD=${{ secrets.RADIKO_PASSWORD }} radio-station rec -id=${{ env.AREA }} -s=${{ steps.prev-date.outputs.target_date }}${{ env.TIME }}

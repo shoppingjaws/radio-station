@@ -6,5 +6,5 @@ ENV TZ "Asia/Tokyo"
 VOLUME ["/output"]
 
 RUN apk add --no-cache ca-certificates ffmpeg rtmpdump tzdata
-
+ENTRYPOINT ["/bin/radigo"]
 CMD ["--help"]
