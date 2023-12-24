@@ -4,7 +4,7 @@ on:
 env:
   AREA: LFR
   DAYWEEK: 0 # 0 (Sunday) to 6 (Saturday)
-  TIME: 010000
+  TIME: "010000"
   TITLE: オードリーのオールナイトニッポン
 jobs:
   record:
