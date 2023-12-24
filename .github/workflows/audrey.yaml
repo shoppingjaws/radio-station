@@ -2,7 +2,8 @@ name: audrey
 on:
   workflow_dispatch:
 env:
-  AREA: LFR
+  AREA: JP13
+  STATION: LFR
   DAYWEEK: 0 # 0 (Sunday) to 6 (Saturday)
   TIME: "010000"
   TITLE: オードリーのオールナイトニッポン
@@ -27,4 +28,4 @@ jobs:
           docker build . -t radio-station
       - name: Docker run
         run: |
-          docker run -v $PWD/output:/output -e RADIKO_MAIL="${{ secrets.RADIKO_MAIL }}" -e RADIKO_PASSWORD="${{ secrets.RADIKO_PASSWORD }}" radio-station rec -id=${{ env.AREA }} -s=${{ steps.prev-date.outputs.target_date }}${{ env.TIME }}
+          docker run -v $PWD/output:/output -e RADIKO_MAIL="${{ secrets.RADIKO_MAIL }}" -e RADIKO_PASSWORD="${{ secrets.RADIKO_PASSWORD }}" radio-station rec -a=${{ env.AREA }} -id=${{ env.STATION }} -s=${{ steps.prev-date.outputs.target_date }}${{ env.TIME }}
