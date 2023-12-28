@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "main" {
-  bucket_prefix = var.name
+  bucket        = var.bucket_name
   force_destroy = true
 }
 
@@ -9,13 +9,6 @@ resource "aws_s3_bucket_public_access_block" "main" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-}
-
-resource "aws_s3_object" "hello_txt" {
-  bucket       = aws_s3_bucket.main.id
-  key          = "hello.txt"
-  content      = "Hello, World"
-  content_type = "text/plain"
 }
 
 resource "aws_s3_bucket_policy" "main" {

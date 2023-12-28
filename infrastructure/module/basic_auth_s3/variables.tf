@@ -4,5 +4,3 @@ variable "name" {
 }
 variable "basicauth_username" {
 }
-variable "basicauth_password" {
-}

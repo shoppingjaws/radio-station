@@ -1,0 +1,2 @@
+docker build -t radio_station_scheduled_task_ecr .
+docker run -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 --entrypoint /aws-lambda/aws-lambda-rie -e LAMBDA_TASK_ROOT=/var/task -e _HANDLER=function.handler radio_station_scheduled_task_ecr /bootstrap function.handler

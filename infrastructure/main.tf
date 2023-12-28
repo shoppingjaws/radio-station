@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
   }
   cloud {
     organization = "ShoppingJaws"
@@ -20,7 +24,7 @@ provider "aws" {
       service = "radio-station"
     }
   }
-  region = "us-east-1"
+  region = "ap-northeast-1"
 }
 
 
@@ -28,26 +32,35 @@ module "basic_auth_s3" {
   source             = "./module/basic_auth_s3"
   bucket_name        = "radio-station-shoppingjaws"
   name               = "radio-station"
-  basicauth_password = "6t3hahhL7RDLZRVgXKGp"
   basicauth_username = "ShoppingJaws"
 }
-resource "aws_iam_policy" "policy" {
-  name        = "s3_radio_station_upload_policy"
-  description = "s3 upload policy used at GHA"
-  policy = jsonencode({
-    "Version" = "2012-10-17",
-    "Statement" = [
+
+module "radio_uploader" {
+  source      = "./module/scheduled_task"
+  channels    = var.channels
+  service     = var.service
+  bucket_name = module.basic_auth_s3.bucket_name
+  endpoint    = module.basic_auth_s3.endpoint
+  user        = module.basic_auth_s3.user
+  password    = module.basic_auth_s3.password
+}
+
+resource "aws_resourcegroups_group" "radio_station" {
+  name = "radio_station"
+  resource_query {
+    query = jsonencode(
       {
-        "Sid"    = "VisualEditor0",
-        "Effect" = "Allow",
-        "Action" = [
-          "s3:PutObject",
-          "s3:ListBucket"
-        ],
-        "Resource" = [
-          "arn:aws:s3:::radio-station-shoppingjaws"
+        ResourceTypeFilters = ["AWS::AllSupported"],
+        TagFilters = [
+          {
+            Key    = "service"
+            Values = [var.service]
+          }
         ]
-      }
-    ]
-  })
+    })
+  }
+}
+
+resource "aws_applicationinsights_application" "example" {
+  resource_group_name = aws_resourcegroups_group.radio_station.name
 }

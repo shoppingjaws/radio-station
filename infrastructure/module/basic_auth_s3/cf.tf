@@ -54,7 +54,12 @@ resource "aws_cloudfront_function" "basicauth" {
   code = templatefile(
     "${path.module}/index.js",
     {
-      authString = base64encode("${var.basicauth_username}:${var.basicauth_password}")
+      authString = base64encode("${var.basicauth_username}:${random_password.password.result}")
     }
   )
+}
+
+resource "random_password" "password" {
+  length  = 16
+  special = false
 }
