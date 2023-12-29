@@ -26,6 +26,7 @@ resource "aws_scheduler_schedule" "event_bridge" {
       id             = each.value.id
       area           = each.value.area
       station        = each.value.station
+      image          = each.value.image
       exec_time_hour = each.value.exec_time_hour
       exec_time_min  = each.value.exec_time_min
       exec_dayweek   = each.value.exec_dayweek
