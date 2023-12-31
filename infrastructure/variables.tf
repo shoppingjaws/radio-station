@@ -64,11 +64,11 @@ variable "channels" {
     id             = "haraichi"
     area           = "JP13"
     station        = "TBS"
-    exec_dayweek   = "THU"
+    exec_dayweek   = "FRI"
     exec_time_min  = 0
     exec_time_hour = 3
     image          = "https://i.scdn.co/image/ab67656300005f1fd89c4d7d72800b603937135f"
-    rec_dayweek    = "THU"
+    rec_dayweek    = "FRI"
     rec_time_min   = 0
     rec_time_hour  = 0
     }, {
