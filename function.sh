@@ -7,7 +7,7 @@ function handler() {
     export RADIGO_HOME="/tmp/output/"
     export RADIKO_MAIL=`aws secretsmanager get-secret-value --secret-id RADIO_STATION_RADIKO_MAIL --query SecretString --output text`
     export RADIKO_PASSWORD=`aws secretsmanager get-secret-value --secret-id RADIO_STATION_RADIKO_PASSWORD --query SecretString --output text`
-    /bin/radigo rec -o=mp3 $REC_ARGS 1>&2
+    /bin/radigo rec $REC_ARGS 1>&2
     export FILE_NAME=`ls /tmp/output`
     export ID=`echo $EVENT_DATA | jq -r ".id"`
     aws s3 cp /tmp/output/$FILE_NAME s3://$BUCKET_NAME/$ID/ 1>&2
