@@ -48,7 +48,7 @@ variable "channels" {
     rec_time_min   = 0
     rec_time_hour  = 1
     }, {
-    title          = "アルコ＆ピース D.C.GARAGE"
+    title          = "アルコ＆ピースD.C.GARAGE"
     id             = "dcg"
     area           = "JP13"
     station        = "TBS"
@@ -72,7 +72,7 @@ variable "channels" {
     rec_time_min   = 0
     rec_time_hour  = 0
     }, {
-    title          = "有吉弘行のSUNDAY NIGHT DREAMER"
+    title          = "有吉弘行のSUNDAY_NIGHT_DREAMER"
     id             = "snd"
     area           = "JP9"
     station        = "RADIOBERRY"
@@ -153,7 +153,7 @@ variable "channels" {
       exec_time_min  = 0
       exec_time_hour = 2
       image          = "https://i.scdn.co/image/ab6765630000ba8a1700cdbfced17c7bc18d3e51"
-      rec_dayweek    = "SAT"
+      rec_dayweek    = "TUE"
       rec_time_min   = 0
       rec_time_hour  = 0
       }, {
