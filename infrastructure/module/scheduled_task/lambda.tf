@@ -37,15 +37,24 @@ resource "aws_iam_role" "execution" {
           "logs:PutLogEvents"]
           Resource = "${aws_cloudwatch_log_group.log.arn}:*"
           }, {
-          Effect   = "Allow"
-          Action   = ["secretsmanager:GetSecretValue"]
-          Resource = ["${aws_secretsmanager_secret.mail.arn}", "${aws_secretsmanager_secret.password.arn}"]
-        }
+            Effect = "Allow"
+            Action = ["ssm:GetParameter"]
+            Condition = {
+              StringEquals = {
+                "ssm:ResourceTag/service": [
+                  "radio-station"
+                ]
+              }
+            }
+            Resource = "arn:aws:ssm:*:${data.aws_caller_identity.current.account_id}:parameter/*"
+          }
       ]
     })
   }
   assume_role_policy = data.aws_iam_policy_document.execution.json
 }
+
+data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "execution" {
   statement {
@@ -63,9 +72,11 @@ resource "aws_cloudwatch_log_group" "log" {
   name              = "/aws/lambda/${var.service}_${var.module}"
   retention_in_days = 30
 }
-resource "aws_secretsmanager_secret" "mail" {
-  name = "RADIO_STATION_RADIKO_MAIL"
+
+data "aws_ssm_parameter" "email" {
+  name = "/radio-station/email"
 }
-resource "aws_secretsmanager_secret" "password" {
-  name = "RADIO_STATION_RADIKO_PASSWORD"
+
+data "aws_ssm_parameter" "password" {
+  name = "/radio-station/password"
 }
