@@ -141,7 +141,7 @@ variable "channels" {
       exec_time_min  = 0
       exec_time_hour = 2
       image          = "https://i.scdn.co/image/ab6765630000ba8a1700cdbfced17c7bc18d3e51"
-      rec_dayweek    = "SAT"
+      rec_dayweek    = "TUE"
       rec_time_min   = 0
       rec_time_hour  = 0
       }, {
