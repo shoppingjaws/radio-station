@@ -132,29 +132,5 @@ variable "channels" {
       rec_dayweek    = "SAT"
       rec_time_min   = 0
       rec_time_hour  = 3
-      }, {
-      title          = "空気階段の踊り場"
-      id             = "kuki"
-      area           = "JP13"
-      station        = "TBS"
-      exec_dayweek   = "TUE"
-      exec_time_min  = 0
-      exec_time_hour = 2
-      image          = "https://i.scdn.co/image/ab6765630000ba8a1700cdbfced17c7bc18d3e51"
-      rec_dayweek    = "SAT"
-      rec_time_min   = 0
-      rec_time_hour  = 0
-      }, {
-      title          = "安住紳一郎の日曜天国"
-      id             = "azumi"
-      area           = "JP13"
-      station        = "TBS"
-      exec_dayweek   = "SUN"
-      exec_time_min  = 0
-      exec_time_hour = 13
-      image          = "https://megaphone.imgix.net/podcasts/b15dd10e-dcc7-11ed-aff8-53dfe2b74109/image/%E5%AE%89%E4%BD%8F%E7%B4%B3%E4%B8%80%E9%83%8E%E3%81%AE%E6%97%A5%E6%9B%9C%E5%A4%A9%E5%9B%BD-3000x3000-20230601ver.jpg"
-      rec_dayweek    = "SAT"
-      rec_time_min   = 0
-      rec_time_hour  = 10
-  }]
+      }]
 }
