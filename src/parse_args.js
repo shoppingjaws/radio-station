@@ -32,4 +32,4 @@ const radigo_input_s = `${targetDate.getFullYear()}${String(
   input.rec_time_hour
 ).padStart(2, "0")}${String(input.rec_time_min).padStart(2, "0")}`;
 const cmd = `-a=${input.area} -id=${input.station} -s=${radigo_input_s}00`;
-console.log(cmd);
+// console.log(cmd);
