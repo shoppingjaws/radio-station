@@ -38,4 +38,5 @@ reader.on("close",()=>{
   <itunes:image href="${image}"/>`
   const after = `</channel>
   </rss>`
+  console.log(before+body+after)
 })
