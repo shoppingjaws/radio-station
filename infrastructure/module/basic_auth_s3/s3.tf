@@ -3,6 +3,17 @@ resource "aws_s3_bucket" "main" {
   force_destroy = true
 }
 
+resource "aws_s3_bucket_lifecycle_configuration" "main" {
+  bucket = aws_s3_bucket.main.id
+  rule {
+    id = "default-storage-class"
+    status = "Enabled"
+    transition {
+      storage_class = "INTELLIGENT_TIERING"
+    }
+  }
+}
+
 resource "aws_s3_bucket_public_access_block" "main" {
   bucket                  = aws_s3_bucket.main.id
   block_public_acls       = true
