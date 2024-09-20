@@ -18,12 +18,13 @@ reader.on("line",(line)=>{
 })
 
 const genItem =(filename,filelength,date)=>{
+  const ext = filename.split(".").pop()
   return `<item>
   <title>${filename}</title>
   <itunes:author>ShoppingJaws</itunes:author>
   <itunes:image href="${image}"/>
   <pubDate>${new Date(date).toUTCString()}</pubDate>
-  <enclosure url="${rssEndpoint}/${id}/${filename}" length="${filelength}" type="audio/mp4; charset=binary"/>
+  <enclosure url="${rssEndpoint}/${id}/${filename}" length="${filelength}" type="audio/${ext}" charset="binary"/>
   </item>`
 }
 
