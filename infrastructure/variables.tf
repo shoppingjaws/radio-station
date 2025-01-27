@@ -135,7 +135,7 @@ variable "channels" {
       },
       {
       title          = "ランジャタイによりますと"
-      id             = "RANJYATAI"
+      id             = "ranjatai"
       area           = "JP16"
       station        = "KNB"
       exec_dayweek   = "SUN"
