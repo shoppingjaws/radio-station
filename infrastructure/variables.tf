@@ -132,5 +132,18 @@ variable "channels" {
       rec_dayweek    = "SAT"
       rec_time_min   = 0
       rec_time_hour  = 3
+      },
+      {
+      title          = "ランジャタイによりますと"
+      id             = "RANJYATAI"
+      area           = "JP16"
+      station        = "KNB"
+      exec_dayweek   = "SUN"
+      exec_time_min  = 0
+      exec_time_hour = 23
+      image          = "https://pbs.twimg.com/card_img/1879876163176407040/B5c-XxoE?format=jpg"
+      rec_dayweek    = "SAT"
+      rec_time_min   = 0
+      rec_time_hour  = 22
       }]
 }
